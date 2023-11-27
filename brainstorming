@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <unistd.h>
+#
+/**
+* main - getppid
+* Description
+* this program retrieves and prints the PID of the parent process
+* using the getppid sustem call
+* Return: 0
+*/
+
+int main(void)
+{
+	pid_t parent_pid;
+
+	parent_pid = getppid();
+	printf("Parent PID: %u\n", parent_pid);
+ return (0);
+}
+
+#!/bin/sh
+# Script to print the maximum value a process ID can be
+# This script reads the maximum process ID value from /proc/sys/kernel/pid_max
+# and prints i to the console
+
+pid_max=$(cat /proc/sys/kernel/pid_max)
+echo "Maximum PID: $pid_max"
+
