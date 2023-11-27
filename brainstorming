@@ -26,3 +26,25 @@ int main(void)
 pid_max=$(cat /proc/sys/kernel/pid_max)
 echo "Maximum PID: $pid_max"
 
+0.av
+#include <stdio.h>
+/**
+* main - print all command line arguments without using ac
+* relies on NULL termination of av array
+* Return: 0
+
+int main(char **av)
+
+{
+	int i = 0;
+	/* loop through the av array until NULL pointer is encountered*/
+	while (av[i] != NULL)
+	{
+		/* print each argument on a new line */
+		printf("%s\n", av[i]);
+		i++;
+	}
+
+	return (0);
+}
+
