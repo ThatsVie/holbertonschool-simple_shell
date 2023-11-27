@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
-#
+
 /**
 * main - getppid
 * Description
@@ -46,5 +46,52 @@ int main(char **av)
 	}
 
 	return (0);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+* main - read a line from the user using getline and print it
+* this program prints "$", waits for the user to enter a command using getline
+* and prints the entered command on next line.
+* it handles EOF condition
+* Return: always 0
+*/
+int main(void)
+{
+	char *input = NULL;
+	size_t len = 0;
+	ssize_t read;
+
+	/* prompt user with "$" */
+	printf("$ ");
+	
+	/* read a line of input from user using getline */
+	read = getline(&input, &len, stdin);
+	
+	/* check for end of file or error */
+	if (read == -1)
+	{
+		if (feof(stdin))
+		{
+		/* handle end of file */
+		printf("\nEnd of input. exiting ...\n");
+		}
+		else
+		{
+		/* handle error */
+		perror("getline");
+		}
+	}
+	else
+	{
+		/*print entered command */
+		printf("you entered: %s", input);
+	}
+
+	/* free allocated memory
+	free(input);
+	return 0;
 }
 
