@@ -11,4 +11,12 @@
 #include <sys/stat.h>
 
 int main(void);
+int execute(char *user_command);
+char **tokenize(char *input_line);
+char **tokenize_path(char *path_string);
+char *get_full_path(char *command);
+void print_environment(void);
+void free_tokens(char **token_array);
+void handle_signal (int signal);
 
+#endif
