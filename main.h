@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+extern char **environ;
 int main(void);
 int execute(char *user_command);
 char **tokenize(char *input_line);
