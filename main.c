@@ -16,7 +16,8 @@ int main(void)
 		{
 			printf("$ "); /* if so, prints shell prompt */
 
-		signal(SIGINT, handle_signal); /* for Ctrl+C */
+			signal(SIGINT, handle_signal); /* for Ctrl+C */
+		}
 
 /* read line of input from user,store line in user_input then result in i */
 		i = getline(&user_input, &buffer_size, stdin);
@@ -32,7 +33,7 @@ int main(void)
 			}
 			break;
 		}
-/* check if entered exit or env command */
+	/* check if entered exit or env command */
 		if (strcmp(user_input, "exit\n") == 0)
 		{
 			free(user_input);
@@ -45,7 +46,7 @@ int main(void)
 			free(user_input);
 			continue;
 		}
-/* execute user input. if execution fails print error, free memory */
+	/* execute user input. if execution fails print error, free memory */
 		exit_status =  execute(user_input);
 		if (exit_status == -1)/* execution fails*/
 		perror( "Error");
