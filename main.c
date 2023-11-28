@@ -41,7 +41,7 @@ int main(void)
 
 		if (strcmp(user_input, "env\n") == 0)
 		{
-			print_env();
+			print_environment();
 			free(user_input);
 			continue;
 		}
