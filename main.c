@@ -28,7 +28,7 @@ int main(void)
 			{
 				printf("\n");
 				free(user_input);
-				exit(exit); /* still working o this part */
+				exit(exit_status);
 			}
 			break;
 		}
@@ -36,7 +36,7 @@ int main(void)
 		if (strcmp(user_input, "exit\n") == 0)
 		{
 			free(user_input);
-			exit(exit);
+			exit(exit_status);
 		}
 
 		if (strcmp(user_input, "env\n") == 0)
