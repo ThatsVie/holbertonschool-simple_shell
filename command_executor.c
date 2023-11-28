@@ -28,7 +28,7 @@ int execute(char *user_command)
 	}
 	else
 	{
-		command_path = get_path(command_arguments[0]);
+		command_path = get_full_path(command_arguments[0]);
 	}
 	
 	if (command_path == NULL)
