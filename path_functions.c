@@ -24,7 +24,7 @@ char **tokenize_path(char *path_string)
 	token = strtok(path_string, ":");
 	while (token != NULL)
 	{
-		path_token[token_index] = token;
+		path_tokens[token_index] = token;
 		token = strtok(NULL, ":");
 		token_index++;
 	}
@@ -73,7 +73,7 @@ char *get_full_path(char *command)
 		if (stat(full_path, &file_info) == 0)
 		{
 			free(copied_path);
-			return (strdup(full_path);
+			return (strdup(full_path));
 		}
 		path_token = strtok(NULL, ":"); /* get next token */
 	}
@@ -81,19 +81,3 @@ char *get_full_path(char *command)
 	free(copied_path);
 	return (NULL);
 }
-
-/**
- * print_envirionment - prints the current environment variables
- */
-
-void print_environment(void)
-{
-	char **env_variable = environ; /* pointer to environment variables */
-
-	while (*env_variable != NULL)
-	{
-		printf("%s\n", *env_variable);
-		env_variable++;
-	}
-}
-
