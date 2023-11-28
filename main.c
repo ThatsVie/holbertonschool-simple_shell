@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * main - entry point
- * Return: When success 0
+ * Return: When success 0, when error -1
  */
 int main(void)
 {
@@ -39,7 +39,7 @@ int main(void)
 			exit(exit);
 		}
 
-		if (strcmp(user_input, "env\n" == 0)
+		if (strcmp(user_input, "env\n") == 0)
 		{
 			print_env();
 			free(user_input);
