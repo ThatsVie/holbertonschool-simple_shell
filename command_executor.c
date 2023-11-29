@@ -16,24 +16,19 @@ int execute(char *user_command)
 	/* tokenize the user's command */
 	command_arguments = tokenize(user_command);
 	if (command_arguments == NULL)
-	{
-		fprintf(stderr, "Error: Failed to tokenize the command.\n");
-		return (-1);
-	}
+		return (-1);/*tokenization failed*/
+	
 
 	/* Is command an absolute path or needs path resolution */
 	if (user_command[0] == '/')
-	{
+	
 		command_path = strdup(user_command);
-	}
 	else
-	{
+	
 		command_path = get_full_path(command_arguments[0]);
-	}
 	
 	if (command_path == NULL)
 	{
-		fprintf(stderr, "Error: Failed to retrieve full path.\n");
 		free_tokens(command_arguments);
 		return (-1);
 	}
@@ -43,29 +38,19 @@ int execute(char *user_command)
 	child_pid = fork();
 	if (child_pid < 0)
 	{
-		fprintf(stderr, "Error: Failed to fork a child process.\n");
 		free_tokens(command_arguments);
 		free(command_path);
 		return (-1);
 	}
 	else if (child_pid == 0)
 	{ 
-		/* child process */
-		if (execve(command_path, command_arguments, environ) == -1)
-		{
-			/* handle execve error */
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
+		exit_status = execve(command_path, command_arguments, environ);
 	}
 	else
 	{
-		/*parent process */
 		wait(&child_status);
 		if (WIFEXITED(child_status))
-		{
 			exit_status = WEXITSTATUS(child_status);
-		}
 	}
 
 	/* free up and return exit status */
