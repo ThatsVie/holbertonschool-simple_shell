@@ -17,6 +17,7 @@ char **tokenize_path(char *path_string)
 	if (path_tokens == NULL)
 	{
 		perror("Error in memory allocation");
+		free(path_tokens);
 		exit(EXIT_FAILURE);
 	}
 
@@ -81,6 +82,11 @@ char *get_full_path(char *command)
 		{
 			free(copied_path);
 			return (full_path);
+		}
+		else
+		{
+			perror("stat");
+			free(full_path);
 		}
 		free(full_path);
 		path_token = strtok(NULL, ":"); /* get next token */
