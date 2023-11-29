@@ -44,11 +44,12 @@ int execute(char *user_command)
 		return (-1);
 	}
 	else if (child_pid == 0)
-
+	{
 		exit_status = execve(command_path, command_arguments, environ);
 	/* if execve fails print an error and exit child process */
 		perror(command_path);
 		exit(exit_status);
+	}
 	else
 	{
 		wait(&child_status);
