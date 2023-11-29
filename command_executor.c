@@ -26,10 +26,10 @@ int execute(char *user_command)
 	else
 		command_path = get_full_path(command_arguments[0]);
 
-	
+	/* check if get_full_path failed */
 	if (command_path == NULL)
 	{
-		fprintf(stderr, "Error: Failed to retrieve full path.\n");
+		fprintf(stderr, "Error: Command not found in PATH.\n");
 		free_tokens(command_arguments);
 		return (-1);
 	}
