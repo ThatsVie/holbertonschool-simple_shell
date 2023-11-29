@@ -12,7 +12,7 @@ char **tokenize(char *input_line)
 	char *current_token; /* temporary storage for each token */
 	int token_index = 0; /* index for token array */
 	int array_size = 8; /* inital size of token array */
-	size_t length;
+
 	/* allocate memory for tokens */
 	token_array = (char **)malloc(sizeof(char *) * array_size);
 	if (token_array == NULL)
@@ -46,16 +46,7 @@ char **tokenize(char *input_line)
 		}
 		current_token = strtok(NULL, "\n\t"); /* move to next token */
 	}
-	/* remove trailing newline character from each token */
-	for (token_index = 0; token_index < array_size; token_index++)
-	{
-		length = strlen(token_array[token_index]);
-		if (length > 0 && token_array[token_index][length - 1] == '\n')
-		{
-			token_array[token_index][length - 1] = '\0';
-		}
-	}
-	
+
 	token_array[token_index] = NULL; /*mark end of array with NULL*/
 
 	return (token_array);
