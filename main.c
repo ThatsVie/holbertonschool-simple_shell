@@ -9,6 +9,7 @@ int main(void)
 	size_t buffer_size = 0; /* variable to store the size of buffer for getline*/
 	int exit_status = 0; /* integer to store the exit status of shell */
 	int i; /* integer variable to store result of getline function */
+	size_t length;
 
 	while (1) /* creates infinite loop - main execution loop of shell*/
 	{
@@ -33,14 +34,21 @@ int main(void)
 			}
 			break;
 		}
+		/* remove trailing newlinecharacter from user_input */
+		length = strlen(user_input);
+		if (length > 0 && user_input[length - 1] == '\n')
+		{
+			user_input[length - 1] = '\0';
+		}
+
 	/* check if entered exit or env command */
-		if (strcmp(user_input, "exit\n") == 0)
+		if (strcmp(user_input, "exit") == 0)
 		{
 			free(user_input);
 			exit(exit_status);
 		}
 
-		if (strcmp(user_input, "env\n") == 0)
+		if (strcmp(user_input, "env") == 0)
 		{
 			print_environment();
 			free(user_input);
