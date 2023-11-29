@@ -57,7 +57,7 @@ int main(void)
 	/* execute user input. if execution fails print error, free memory */
 		exit_status =  execute(user_input);
 		if (exit_status == -1)/* execution fails*/
-		perror( "Error");
+		perror(user_input);
 		
 	/* free memory allocated by getline */
 		free(user_input);
