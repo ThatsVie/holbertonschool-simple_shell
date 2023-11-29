@@ -42,7 +42,7 @@ char **tokenize_path(char *path_string)
 char *get_full_path(char *command)
 {
 	char *path_env, *copied_path;
-	char full_path[1024];
+	char full_path = NULL;
 	char *path_token;
 	struct stat file_info;
 
@@ -67,14 +67,22 @@ char *get_full_path(char *command)
 	while (path_token)
 	{
 		/* construct full path */
-		snprintf(full_path, sizeof(full_path), "%s/%s", path_token, command);
+		full_path = (char *)malloc(strlen(path_token) + strlen(command) + 2);
+		if (full_path == NULL)
+		{
+			perror("malloc");
+			free(copied_path);
+			return (NULL);
+		}
+		sprintf(full_path, "%s/%s", path_token, command);
 
 		/* check if path is valid */
 		if (stat(full_path, &file_info) == 0)
 		{
 			free(copied_path);
-			return (strdup(full_path));
+			return (full_path);
 		}
+		free(full_path);
 		path_token = strtok(NULL, ":"); /* get next token */
 	}
 
