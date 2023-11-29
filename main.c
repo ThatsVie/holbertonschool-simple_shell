@@ -50,7 +50,11 @@ int main(void)
 		exit_status =  execute(user_input);
 		if (exit_status == -1)/* execution fails*/
 		perror( "Error");
+		
+	/* free memory allocated by getline */
 		free(user_input);
+		user_input = NULL; /* set pointer to NULL after freeing
 	}
+
 	return (exit_status);
 }
