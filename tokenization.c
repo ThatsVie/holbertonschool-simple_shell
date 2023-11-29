@@ -28,11 +28,11 @@ char **tokenize(char *input_line)
 		token_array[token_index] = strdup(current_token);
 		if (token_array[token_index] == NULL)
 		{
-			fprintf(stderr, "error in memory allocaion\n");
+			fprintf(stderr, "Error: Failed to allocate memory for token\n");
 			exit(EXIT_FAILURE);
 		}
 		token_index++;
-		
+
 		/*resize array if necessary */
 		if (token_index == array_size)
 		{
