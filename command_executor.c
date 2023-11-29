@@ -5,7 +5,6 @@
  *
  * Return: exit status 0 on success, -1 on error
  */
- 
 int execute(char *user_command)
 {
 	char **command_arguments = NULL; /* array to store command arguments*/
