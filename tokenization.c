@@ -26,7 +26,7 @@ char **tokenize(char *input_line)
 		/* store each token in the array */
 		token_array[token_index] = strdup(current_token);
 		token_index++;
-		current_token = strtok(NULL, "\n\t") /*move to next token*/
+		current_token = strtok(NULL, "\n\t"); /*move to next token*/
 	}
 	token_array[token_index] = NULL; /*mark end of array with NULL*/
 
