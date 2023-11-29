@@ -12,7 +12,7 @@ char **tokenize(char *input_line)
 	char *current_token; /* temporary storage for each token */
 	int token_index = 0; /* index for token array */
 	int array_size = 8; /* inital size of token array */
-	size_t length;
+
 	/* allocate memory for tokens */
 	token_array = (char **)malloc(sizeof(char *) * array_size);
 	if (token_array == NULL)
