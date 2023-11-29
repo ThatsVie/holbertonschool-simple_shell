@@ -29,7 +29,7 @@ int main(void)
 			{
 				printf("\n");
 				free(user_input);
-				exit(exit_status);
+				exit(EXIT_SUCCESS);
 			}
 			break;
 		}
