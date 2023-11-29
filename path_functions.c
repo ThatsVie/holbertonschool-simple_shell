@@ -79,5 +79,5 @@ char *get_full_path(char *command)
 	}
 
 	free(copied_path);
-	return (NULL);
+	return (NULL); /* command not found in directory*/
 }
