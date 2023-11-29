@@ -26,10 +26,15 @@ char **tokenize(char *input_line)
 	{
 		/* store each token in the array */
 		token_array[token_index] = strdup(current_token);
+		if (token_array[token_index] == NULL)
+		{
+			fprintf(stderr, "error in memory allocaion\n");
+			exit(EXIT_FAILURE);
+		}
 		token_index++;
 		
-		/*resize array if nevessary */
-		if (token_index == array_size -1)
+		/*resize array if necessary */
+		if (token_index == array_size)
 		{
 			array_size *=2;
 			token_array = realloc(token_array, sizeof(char *) * array_size);
