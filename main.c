@@ -53,7 +53,7 @@ int main(void)
 		
 	/* free memory allocated by getline */
 		free(user_input);
-		user_input = NULL; /* set pointer to NULL after freeing
+		user_input = NULL; /* set pointer to NULL after freeing */
 	}
 
 	return (exit_status);
