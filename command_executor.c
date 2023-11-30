@@ -5,7 +5,7 @@
  *
  * Return: exit status 0 on success, -1 on error
  */
-int execute(char *user_command)
+int execute(char *user_input)
 {
 	char **command_args = NULL; /* array to store command arguments */
 	char *command_path = NULL; /* path of command to be executed */
