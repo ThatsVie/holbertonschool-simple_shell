@@ -57,6 +57,9 @@ int main(void)
 		/* check for execution error */
 		if (exit_status == -1)
 			perror("Execution Error");
+
+		/* free memory allocated for user input */
+		free(user_input);
 	}
 
 		/*return exit status of shell */
