@@ -8,16 +8,15 @@
 
 char **tokenize_path(char *path_string)
 {
-	char **path_tokens; /*  array of pointers to store path tokens */
+	char **path_tokens;
 	int token_index = 0;
-	char *token; /* temporary token storage */
+	char *token;
 
 	/* allocate memory for the buffer */
 	path_tokens = (char **)malloc(sizeof(char *) * 1024);
 	if (path_tokens == NULL)
 	{
 		perror("Error in memory allocation");
-		free(path_tokens);
 		exit(EXIT_FAILURE);
 	}
 
