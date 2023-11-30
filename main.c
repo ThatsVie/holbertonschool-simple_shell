@@ -5,26 +5,23 @@
  */
 int main(void)
 {
-	char *user_input = NULL; /* pointer to string to store user input */
-	size_t buffer_size = 0; /* variable to store the size of buffer for getline*/
-	int exit_status = 0; /* integer to store the exit status of shell */
-	int i; /* integer variable to store result of getline function */
-	size_t length;
+	char *user_input = NULL; /*variable to store user input */
+	int exit_status = 0; /* exit status of shell */
+	int getline_result; /* result of getline function */
+	size_t buffer_size = 0; /* size of buffer for getline */
 
-	while (1) /* creates infinite loop - main execution loop of shell*/
-	{
-		if(isatty(STDIN_FILENO)) /*checks if connected to terminal */
-		{
-			printf("$ "); /* if so, prints shell prompt */
+	while(1)/* creates infinite loop - main execution loop of shell*/
+	{ /* check if connected to a terminal and print shell prompt*/
+		if (isatty(STDIN_FILENO))
+			printf("$ ");
+		/* register signal handler for Ctrl+C */
+		signal(SIGINT, handle_signal);
 
-			signal(SIGINT, handle_signal); /* for Ctrl+C */
-		}
+		/* read a line of input from user */
+		getline_result = getline(&user_input, &buffer_size, stdin);
 
-/* read line of input from user,store line in user_input then result in i */
-		i = getline(&user_input, &buffer_size, stdin);
-
-/* check if error or EOF. print new line if EOF, free memory, exit program */
-		if (i == -1)
+		/* check for errors or EOF */
+		if (getline_result == -1)
 		{
 			if (feof(stdin))
 			{
@@ -34,39 +31,32 @@ int main(void)
 			}
 			break;
 		}
-		/* remove trailing newlinecharacter from user_input */
-		length = strlen(user_input);
-		if (length > 0 && user_input[length - 1] == '\n')
-		{
-			user_input[length - 1] = '\0';
-		}
-
-	/* check if entered exit or env command */
-		if (strcmp(user_input, "exit") == 0)
+		/* check for exit command */
+		if (strcmp(user_input, "exit\n") == 0)
 		{
 			free(user_input);
-			exit(exit_status);
+			exit(EXIT_SUCCESS);
 		}
 
-		if (strcmp(user_input, "env") == 0)
+		/* check for env command */
+		if (strcmp(user_input, "env\n") == 0)
 		{
-			print_environment();
+			print_environment(); /*print environment variable*/
 			free(user_input);
 			continue;
 		}
-	/* execute user input. if execution fails print error, free memory */
-		exit_status =  execute(user_input);
-		if (exit_status == -1)/* execution fails*/
-		perror(user_input);
-		
-	/* free memory allocated by getline */
+
+		/*execute user input */
+		exit_status = execute(user_input);
+
+		/* check for execution error */
+		if (exit_status == -1)
+			perror("Execution Error");
+
+		/*free memory allocated for user input */
 		free(user_input);
-		
-	/*reset buffer_size to 0 */
-		buffer_size = 0;
-		
-		user_input = NULL; /* set pointer to NULL after freeing */
 	}
 
-	return (exit_status);
+		/*return exit status of shell */
+		return (exit_status);
 }
