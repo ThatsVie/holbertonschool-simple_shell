@@ -20,7 +20,7 @@ char **tokenize(char *input_line)
 		exit (EXIT_FAILURE);
 	}
 	/* tokenize input line */
-	current_token = strtok(input_line, "\n\t");
+	current_token = strtok(input_line, " \n\t");
 	while (current_token != NULL)
 	{
 		/* store each token in the array */
