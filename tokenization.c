@@ -31,6 +31,7 @@ char **tokenize(char *input_line)
 			exit(EXIT_FAILURE);
 		}
 		token_index++;
+		current_token = strtok(NULL, " \n\t");
 	}
 
 	token_array[token_index] = NULL; /*mark end of array with NULL*/
