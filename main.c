@@ -29,20 +29,25 @@ int main(void)
 				free(user_input);
 				exit(EXIT_SUCCESS);
 			}
-			break;
+			perror("getline");
+			free(user_input);
+			continue;
+		}
+		/*remove newline character at end of input */
+		user_input[strcspn(user_input, "\n")] = '\0';
+
 		}
 		/* check for exit command */
-		if (strcmp(user_input, "exit\n") == 0)
+		if (strcmp(user_input, "exit") == 0)
 		{
 			free(user_input);
 			exit(EXIT_SUCCESS);
 		}
 
 		/* check for env command */
-		if (strcmp(user_input, "env\n") == 0)
+		if (strcmp(user_input, "env") == 0)
 		{
 			print_environment(); /*print environment variable*/
-			free(user_input);
 			continue;
 		}
 
@@ -52,9 +57,6 @@ int main(void)
 		/* check for execution error */
 		if (exit_status == -1)
 			perror("Execution Error");
-
-		/*free memory allocated for user input */
-		free(user_input);
 	}
 
 		/*return exit status of shell */
