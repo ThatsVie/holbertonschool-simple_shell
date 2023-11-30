@@ -36,7 +36,6 @@ int main(void)
 		/*remove newline character at end of input */
 		user_input[strcspn(user_input, "\n")] = '\0';
 
-		}
 		/* check for exit command */
 		if (strcmp(user_input, "exit") == 0)
 		{
