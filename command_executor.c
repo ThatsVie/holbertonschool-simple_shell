@@ -58,7 +58,7 @@ int execute(char *user_input)
 			exit_status = WEXITSTATUS(child_status);
 	}
 	/* free up and return exit status */
-	free_token(command_args);
+	free_tokens(command_args);
 	free(command_path);
 	return (exit_status);
 }
