@@ -18,7 +18,6 @@ int execute(char *user_input)
 	{
 		return (-1); /* tokenization failed */
 	}
-
 	/* check if command is absolute path of needs path resolution */
 	if (user_input[0] == '/')
 	{/* use input as path if it starts with '/' */
