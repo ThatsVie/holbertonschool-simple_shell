@@ -42,7 +42,6 @@ int main(void)
 		{
 			free(user_input);
 			exit(EXIT_SUCCESS);
-			break; /* exit loop*/
 		}
 
 		/* check for env command */
@@ -62,6 +61,6 @@ int main(void)
 		free(user_input);
 	}
 
-		/*return exit status of shell */
-		return (exit_status);
+	/*return exit status of shell */
+	return (exit_status);
 }
