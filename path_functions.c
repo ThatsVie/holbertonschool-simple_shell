@@ -64,7 +64,7 @@ char *get_full_path(char *command)
 
 	/* tokenize the PATH variable to search for the command */
 	path_token = strtok(copied_path, ":");
-	while (path_tokens)
+	while (path_token)
 	{
 		/* construct full path */
 		full_path = (char *)malloc(strlen(path_token) + strlen(command) + 2);
