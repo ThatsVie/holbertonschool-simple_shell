@@ -43,7 +43,7 @@ char *get_full_path(char *command)
 {
 	char *path_env, *copied_path;
 	char *full_path = NULL;
-	char *path_token;
+	char *path_tokens;
 	struct stat file_info;
 
 	/* get the value of the PATH environment variable */
@@ -61,9 +61,10 @@ char *get_full_path(char *command)
 		perror("strdup");
 		return (NULL);
 	}
+	path_tokens = tokenize_path(copied_path);
 
 	/* tokenize the PATH variable to search for the command */
-	path_token =strtok(copied_path, ":");
+	path_tokens = strtok(copied_path, ":");
 	while (path_token)
 	{
 		/* construct full path */
