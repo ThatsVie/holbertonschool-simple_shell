@@ -31,7 +31,7 @@ int main(void)
 			}
 			perror("getline");
 			free(user_input);
-			continue;
+			break; /* exit loop on error*/
 		}
 		/*remove newline character at end of input */
 		user_input[strcspn(user_input, "\n")] = '\0';
@@ -42,13 +42,13 @@ int main(void)
 		{
 			free(user_input);
 			exit(EXIT_SUCCESS);
+			break; /* exit loop*/
 		}
 
 		/* check for env command */
 		if (strcmp(user_input, "env") == 0)
 		{
 			print_environment(); /*print environment variable*/
-			continue;
 		}
 
 		/*execute user input */
