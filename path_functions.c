@@ -49,19 +49,9 @@ char *get_full_path(char *command)
 	/* get the value of the PATH environment variable */
 	path_env = getenv("PATH");
 	if (path_env == NULL)
-	{
-		perror("getenv");
 		return (NULL);
-	}
-
 	/* duplicate the environment variable for tokenization */
 	copied_path = strdup(path_env);
-	if (copied_path == NULL)
-	{
-		perror("strdup");
-		return (NULL);
-	}
-
 	/* tokenize the PATH variable to search for the command */
 	path_token = strtok(copied_path, ":");
 	printf("path_token-> %s \n", path_token);
