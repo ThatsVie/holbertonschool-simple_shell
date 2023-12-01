@@ -88,10 +88,9 @@ char *get_full_path(char *command)
 		{
 			printf("File Info is not valid!\n");
 			perror("stat");
-			free(full_path);
+			path_token = strtok(NULL, ":"); /* get next token */
 		}
 		free(full_path);
-		path_token = strtok(NULL, ":"); /* get next token */
 	}
 
 	free(copied_path);
