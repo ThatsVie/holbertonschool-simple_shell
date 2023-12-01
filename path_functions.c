@@ -79,11 +79,13 @@ char *get_full_path(char *command)
 		/* check if path is valid */
 		if (stat(full_path, &file_info) == 0)
 		{
+			printf("File info is valid! \n");
 			free(copied_path);
 			return (full_path);
 		}
 		else
 		{
+			printf("File Info is not valid!\n");
 			perror("stat");
 			free(full_path);
 		}
