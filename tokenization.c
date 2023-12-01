@@ -25,11 +25,6 @@ char **tokenize(char *input_line)
 	{
 		/* store each token in the array */
 		token_array[token_index] = strdup(current_token);
-		if (token_array[token_index] == NULL)
-		{
-			perror("Error: Failed to allocate memory for token");
-			exit(EXIT_FAILURE);
-		}
 		token_index++;
 		current_token = strtok(NULL, " \n\t");
 	}
