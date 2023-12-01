@@ -42,7 +42,7 @@ char **tokenize_path(char *path_string)
 char *get_full_path(char *command)
 {
 	char *path_env, *copied_path;
-	char *full_path = 1024;
+	char full_path[1024];
 	char *path_token;
 	struct stat file_info;
 
