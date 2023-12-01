@@ -29,24 +29,21 @@ int main(void)
 				free(user_input);
 				exit(EXIT_SUCCESS);
 			}
-			perror("getline");
-			free(user_input);
 			break; /* exit loop on error*/
 		}
-		/*remove newline character at end of input */
-		user_input[strcspn(user_input, "\n")] = '\0';
-
-		/* check for exit command */
-		if (strcmp(user_input, "exit") == 0)
+		
+		if (strcmp(user_input, "exit\n") == 0)
 		{
 			free(user_input);
 			exit(EXIT_SUCCESS);
 		}
 
 		/* check for env command */
-		if (strcmp(user_input, "env") == 0)
+		if (strcmp(user_input, "env\n") == 0)
 		{
 			print_environment(); /*print environment variable*/
+			free(user_input);
+			continue;
 		}
 
 		/*execute user input */
