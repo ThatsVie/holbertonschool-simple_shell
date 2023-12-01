@@ -11,6 +11,6 @@ void handle_signal (int signal)
 {
 	if (signal == SIGINT)
 	{
-		puts("\n $ ");
+		printf("\n$ ");
 	}
 }
