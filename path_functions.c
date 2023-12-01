@@ -75,7 +75,7 @@ char *get_full_path(char *command)
 			return (NULL);
 		}
 		sprintf(full_path, "%s/%s", path_token, command);
-
+			printf("full_path-> %s \n", full_path);
 		/* check if path is valid */
 		if (stat(full_path, &file_info) == 0)
 		{
