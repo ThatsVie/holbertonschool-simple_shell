@@ -64,6 +64,7 @@ char *get_full_path(char *command)
 
 	/* tokenize the PATH variable to search for the command */
 	path_token = strtok(copied_path, ":");
+	printf("path_token-> %s \n", path_token);
 	while (path_token)
 	{
 		/* construct full path */
@@ -75,7 +76,7 @@ char *get_full_path(char *command)
 			return (NULL);
 		}
 		sprintf(full_path, "%s/%s", path_token, command);
-
+			printf("full_path-> %s \n", full_path);
 		/* check if path is valid */
 		if (stat(full_path, &file_info) == 0)
 		{
@@ -87,10 +88,9 @@ char *get_full_path(char *command)
 		{
 			printf("File Info is not valid!\n");
 			perror("stat");
-			free(full_path);
+			path_token = strtok(NULL, ":"); /* get next token */
 		}
 		free(full_path);
-		path_token = strtok(NULL, ":"); /* get next token */
 	}
 
 	free(copied_path);
