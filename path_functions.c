@@ -64,6 +64,7 @@ char *get_full_path(char *command)
 
 	/* tokenize the PATH variable to search for the command */
 	path_token = strtok(copied_path, ":");
+	printf("path_token-> %s \n", path_token);
 	while (path_token)
 	{
 		/* construct full path */
