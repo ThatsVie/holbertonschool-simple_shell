@@ -37,7 +37,8 @@ int execute(char *user_input)
 	/* fork a child process for command execution */
 	child_pid = fork();
 	if (child_pid < 0)
-	{
+	{	
+		perror("Fork failed");
 		free_tokens(command_args);
 		free(command_path);
 		return (-1); /* fork failed*/
@@ -46,6 +47,7 @@ int execute(char *user_input)
 	{
 		exit_status = execve(command_path, command_args, environ);
 	}
+	
 	else /* parent process */
 	{
 		wait(&child_status);
