@@ -6,7 +6,7 @@
 int main(void)
 {
 	char *user_input = NULL; /*variable to store user input */
-	int exit_status = 0, int getline_result;
+	int exit_status = 0, getline_result;
 	size_t buffer_size = 0; /* size of buffer for getline */
 
 	while (1)/* creates infinite loop - main execution loop of shell*/
