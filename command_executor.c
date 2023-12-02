@@ -45,10 +45,6 @@ int execute(char *user_input)
 	else if (child_pid == 0) /*child process */
 	{
 		exit_status = execve(command_path, command_args, environ);
-
-		/* if execve fails print error and exit child process*/
-		perror(command_path);
-		exit(exit_status);
 	}
 	else /* parent process */
 	{
@@ -61,4 +57,3 @@ int execute(char *user_input)
 	free(command_path);
 	return (exit_status);
 }
-

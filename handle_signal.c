@@ -12,5 +12,6 @@ void handle_signal (int signal)
 	if (signal == SIGINT)
 	{
 		printf("\n$ ");
+		fflush(stdout); /*prompt is displayed immediately */
 	}
 }
