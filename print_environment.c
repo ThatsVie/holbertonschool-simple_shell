@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * print_envirionment - prints the current environment variables
+ * print_environment - prints the current environment variables
  */
 
 void print_environment(void)
