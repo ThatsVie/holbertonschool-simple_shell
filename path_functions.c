@@ -3,7 +3,7 @@
  * tokenize_path - tokenizes PATH variable into an array of tokens
  * @path_string: the full path string
  *
- * Returns: array of pointers to path tokens
+ * Return: array of pointers to path tokens
  */
 
 char **tokenize_path(char *path_string)
@@ -37,7 +37,7 @@ char **tokenize_path(char *path_string)
  * get_full_path - gets the  full path fo a given command
  * @command: the command for which the full path is needed
  *
- * Returns: full path or NULL on error
+ * Return: full path or NULL on error
  */
 char *get_full_path(char *command)
 {
