@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * free_token - frees the array of tokens
- *@token_array: tokens array to be freed
+ * free_tokens - frees the array of tokens
+ * @token_array: tokens array to be freed
  */
 void free_tokens(char **token_array)
 {
