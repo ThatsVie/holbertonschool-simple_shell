@@ -14,9 +14,6 @@ int main(void)
 	{ /* check if connected to a terminal and print shell prompt*/
 		if (isatty(STDIN_FILENO))
 			printf("$ ");
-		/* register signal handler for Ctrl+C */
-		signal(SIGINT, handle_signal);
-
 		/* read a line of input from user */
 		getline_result = getline(&user_input, &buffer_size, stdin);
 
