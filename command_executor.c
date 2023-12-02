@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * execute - executes a command by forking a child process
- * @user_command: command entered by the user
+ * @user_input: command entered by the user
  *
  * Return: exit status 0 on success, -1 on error
  */
