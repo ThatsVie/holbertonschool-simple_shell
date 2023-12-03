@@ -41,7 +41,10 @@ int execute(char *user_input)
 		return (-1); /* fork failed*/
 	}
 	else if (child_pid == 0) /*child process */
+	{
 		exit_status = execve(command_path, command_args, environ);
+		exit(EXIT_FAILURE);
+	}
 	else /* parent process */
 	{
 		wait(&child_status);
