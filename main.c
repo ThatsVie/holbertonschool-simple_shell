@@ -32,22 +32,19 @@ int main(void)
 		user_input[strcspn(user_input, "\n")] = '\0';
 
 		if (strcasecmp(user_input, "exit") == 0)
-		{
-			free(user_input);
-			exit(EXIT_SUCCESS);
-		}
+			break; /*exit loop instead of freeing and returning */
+
 		/* check for env command */
 		if (strcasecmp(user_input, "env") == 0)
 		{
 			print_environment(); /*print environment variable*/
-			free(user_input);
 			continue;
 		}
 		exit_status = execute(user_input);
 
 		if (exit_status == -1)
 			perror("Execution Error");
-		free(user_input);
 	}
+	free(user_input); /*freeing outside of loop*/
 	return (exit_status);
 }
