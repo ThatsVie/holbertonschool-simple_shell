@@ -11,6 +11,7 @@ int execute(char *user_input)
 	char *command_path = NULL; /* path of command to be executed */
 	pid_t child_pid;
 	int child_status, exit_status = 0;
+	char *newline;
 
 	/* tokenize user's command */
 	command_args = tokenize(user_input);
@@ -38,7 +39,10 @@ int execute(char *user_input)
 	}
 	else if (child_pid == 0) /*child process */
 		exit_status = execve(command_path, command_args, environ);
-
+	/*trim trailing newline from command_args[0]*/
+		newline = strrchr(command_args[0], '\n');
+		if (newline != NULL)
+			newline = '\0';
 	else /* parent process */
 	{
 		wait(&child_status);
