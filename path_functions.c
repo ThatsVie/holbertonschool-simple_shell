@@ -57,9 +57,10 @@ char *get_full_path(char *command)
 		perror("Error in memory allocation");
 		exit(EXIT_FAILURE);
 	}
+
 	/* tokenize the PATH variable to search for the command */
 	path_token = strtok(copied_path, ":");
-	printf("path_token-> %s \n", path_token);
+
 	while (path_token)
 	{
 		/* construct full path */
@@ -70,7 +71,6 @@ char *get_full_path(char *command)
 		/* check if path is valid */
 		if (stat(full_path, &file_info) == 0)
 		{
-			printf("File info is valid! \n");
 			free(copied_path);
 			return (strdup(full_path));
 		}
