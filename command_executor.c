@@ -17,6 +17,10 @@ int execute(char *user_input)
 	command_args = tokenize(user_input);
 	if (command_args == NULL)
 		return (-1); /* tokenization failed */
+	/*trim trailing newline from command_args[0]*/
+	newline = strrchr(command_args[0], '\n');
+	if (newline != NULL)
+		newline= '\0';
 	/* check if command is absolute path of needs path resolution */
 	if (user_input[0] == '/')
 	/* use input as path if it starts with '/' */
@@ -39,10 +43,6 @@ int execute(char *user_input)
 	}
 	else if (child_pid == 0) /*child process */
 		exit_status = execve(command_path, command_args, environ);
-	/*trim trailing newline from command_args[0]*/
-		newline = strrchr(command_args[0], '\n');
-		if (newline != NULL)
-			newline = '\0';
 	else /* parent process */
 	{
 		wait(&child_status);
