@@ -11,7 +11,7 @@ char **tokenize(char *input_line)
 	char **token_array = NULL; /* array to store tokens */
 	char *current_token; /* temporary storage for each token */
 	int token_index = 0; /* index for token array */
-	int token_counter;
+
 	/* allocate memory for tokens */
 	token_array = (char **)malloc(sizeof(char *) * 1024);
 	if (token_array == NULL)
@@ -30,9 +30,6 @@ char **tokenize(char *input_line)
 	}
 
 	token_array[token_index] = NULL; /*mark end of array with NULL*/
-	/* free individual tokens */
-	for (token_counter = 0; token_counter < token_index; token_counter++)
-		free(token_array[token_counter]);
 
 	return (token_array);
 }
