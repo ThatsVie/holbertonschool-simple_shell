@@ -11,15 +11,15 @@ int execute(char *user_input)
 	char *command_path = NULL; /* path of command to be executed */
 	pid_t child_pid;
 	int child_status, exit_status = 0;
-	char *newline;
+	char *last_newline;
 
 	/* tokenize user's command */
 	command_args = tokenize(user_input);
 	if (command_args == NULL)
 		return (-1); /* tokenization failed */
 	/*remove newline character from last token */
-	if ((newline = strchr(command_args[0], '\n')) != NULL)
-		*newline = '\0';
+	if ((last_newline = strrchr(command_args[0], '\n')) != NULL)
+		*last_newline = '\0';
 	/* check if command is absolute path of needs path resolution */
 	if (user_input[0] == '/')
 	/* use input as path if it starts with '/' */
