@@ -17,7 +17,7 @@ char **tokenize(char *input_line)
 	if (token_array == NULL)
 	{
 		perror("Error in memory allocation");
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	/* tokenize input line */
 	current_token = strtok(input_line, " \n\t");

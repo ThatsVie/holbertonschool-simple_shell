@@ -31,7 +31,7 @@ int execute(char *user_input)
 	/* fork a child process for command execution */
 	child_pid = fork();
 	if (child_pid < 0)
-	{	
+	{
 		free_tokens(command_args);
 		free(command_path);
 		return (-1); /* fork failed*/

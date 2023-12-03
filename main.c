@@ -25,7 +25,7 @@ int main(void)
 				exit(EXIT_SUCCESS);
 			}
 			break;
-		}	
+		}
 		if (strcmp(user_input, "exit\n") == 0)
 		{
 			free(user_input);
