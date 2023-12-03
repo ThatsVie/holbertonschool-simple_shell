@@ -24,15 +24,20 @@ int main(void)
 				free(user_input);
 				exit(EXIT_SUCCESS);
 			}
-			break;
+			perror("getline");
+			free(user_input);
+			return (EXIT_FAILURE);
 		}
-		if (strcmp(user_input, "exit\n") == 0)
+		/*remove newline character from user_input */
+		user_input[strcspn(user_input, "\n")] = '\0';
+
+		if (strcasecmp(user_input, "exit") == 0)
 		{
 			free(user_input);
 			exit(EXIT_SUCCESS);
 		}
 		/* check for env command */
-		if (strcmp(user_input, "env\n") == 0)
+		if (strcasecmp(user_input, "env") == 0)
 		{
 			print_environment(); /*print environment variable*/
 			free(user_input);
