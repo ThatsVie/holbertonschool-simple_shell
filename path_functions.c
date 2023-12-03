@@ -63,8 +63,10 @@ char *get_full_path(char *command)
 	while (path_token)
 	{
 		/* construct full path */
-		sprintf(full_path, "%s/%s", path_token, command);
-			printf("full_path-> %s \n", full_path);
+		if (path_token[strlen(path_token) - 1] == '/')
+			sprintf(full_path, "%s%s", path_token, command);
+		else
+			sprintf(full_path, "%s/%s", path_token, command);
 		/* check if path is valid */
 		if (stat(full_path, &file_info) == 0)
 		{
