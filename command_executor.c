@@ -17,10 +17,9 @@ int execute(char *user_input)
 	command_args = tokenize(user_input);
 	if (command_args == NULL)
 		return (-1); /* tokenization failed */
-	/*trim trailing newline from command_args[0]*/
-	newline = strrchr(command_args[0], '\n');
-	if (newline != NULL)
-		*newline= '\0';
+	/*remove newline character from last token */
+	if ((newline = strchr(command_args[0], '\n')) != NULL)
+		*newline = '\0';
 	/* check if command is absolute path of needs path resolution */
 	if (user_input[0] == '/')
 	/* use input as path if it starts with '/' */
