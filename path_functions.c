@@ -29,7 +29,7 @@ char **tokenize_path(char *path_string)
 		token_index++;
 	}
 	path_tokens[token_index] = NULL; /* marking end of buffer */
-	
+
 	return (path_tokens);
 }
 
@@ -52,6 +52,11 @@ char *get_full_path(char *command)
 		return (NULL);
 	/* duplicate the environment variable for tokenization */
 	copied_path = strdup(path_env);
+	if (copied_path == NULL)
+	{
+		perror("Error in memory allocation");
+		exit(EXIT_FAILURE);
+	}
 	/* tokenize the PATH variable to search for the command */
 	path_token = strtok(copied_path, ":");
 	printf("path_token-> %s \n", path_token);

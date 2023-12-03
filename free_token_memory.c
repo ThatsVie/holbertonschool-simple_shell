@@ -6,7 +6,7 @@
 void free_tokens(char **token_array)
 {
 	int token_index;
-	
+
 	if (token_array == NULL)
 		return;
 
