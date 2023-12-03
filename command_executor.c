@@ -20,7 +20,7 @@ int execute(char *user_input)
 	/*trim trailing newline from command_args[0]*/
 	newline = strrchr(command_args[0], '\n');
 	if (newline != NULL)
-		newline= '\0';
+		*newline= '\0';
 	/* check if command is absolute path of needs path resolution */
 	if (user_input[0] == '/')
 	/* use input as path if it starts with '/' */
