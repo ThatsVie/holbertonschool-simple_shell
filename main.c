@@ -24,25 +24,27 @@ int main(void)
 				free(user_input);
 				exit(EXIT_SUCCESS);
 			}
-			break;
-		}
-		if (strcmp(user_input, "exit\n") == 0)
-		{
+			perror("getline");
 			free(user_input);
-			exit(EXIT_SUCCESS);
+			return (EXIT_FAILURE);
 		}
+		/*remove newline character from user_input */
+		user_input[strcspn(user_input, "\n")] = '\0';
+
+		if (strcasecmp(user_input, "exit") == 0)
+			break; /*exit loop instead of freeing and returning */
+
 		/* check for env command */
-		if (strcmp(user_input, "env\n") == 0)
+		if (strcasecmp(user_input, "env") == 0)
 		{
 			print_environment(); /*print environment variable*/
-			free(user_input);
 			continue;
 		}
 		exit_status = execute(user_input);
 
 		if (exit_status == -1)
 			perror("Execution Error");
-		free(user_input);
 	}
+	free(user_input); /*freeing outside of loop*/
 	return (exit_status);
 }
