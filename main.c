@@ -30,7 +30,6 @@ int main(void)
 		/* trim newline character from user_input if it exists */
 		if (user_input[getline_result - 1] == '\n')
 			user_input[getline_result - 1] = '\0';
-		
 		if (strcasecmp(user_input, "exit") == 0)
 			break; /*exit loop instead of freeing and returning */
 

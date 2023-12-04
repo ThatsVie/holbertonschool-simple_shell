@@ -11,15 +11,10 @@ int execute(char *user_input)
 	char *command_path = NULL; /* path of command to be executed */
 	pid_t child_pid;
 	int child_status, exit_status = 0;
-	size_t input_length;
 
 	/* Validate input */
 	if (user_input == NULL)
 		return (-1);
-	/*remove newline character from user input */
-	input_length = strlen(user_input);
-	if (input_length > 0 && user_input[input_length - 1] == '\n')
-		user_input[input_length - 1] = '\0';
 	/* tokenize user's command */
 	command_args = tokenize(user_input);
 	if (command_args == NULL)
