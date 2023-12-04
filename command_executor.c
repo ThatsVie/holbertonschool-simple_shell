@@ -11,21 +11,19 @@ int execute(char *user_input)
 	char *command_path = NULL; /* path of command to be executed */
 	pid_t child_pid;
 	int child_status, exit_status = 0;
-	char *last_newline;
+	size_t input_length;
 
 	/* Validate input */
 	if (user_input == NULL)
 		return (-1);
+	/*remove newline character from user input */
+	input_length = strlen(user_input);
+	if (input_length > 0 && user_input[input_length - 1] == '\n')
+		user_input[input_length - 1] = '\0';
 	/* tokenize user's command */
 	command_args = tokenize(user_input);
 	if (command_args == NULL)
 		return (-1); /* tokenization failed */
-	/*remove newline character from last token */
-	if ((last_newline = strrchr(command_args[0], '\n')) != NULL)
-	{
-		if (last_newline == command_args[0] + strlen(command_args[0]) - 1)
-			*last_newline = '\0';
-	}
 	/* check if command is absolute path of needs path resolution */
 	if (command_args[0][0] == '/')
 	{
