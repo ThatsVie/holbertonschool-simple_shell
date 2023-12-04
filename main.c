@@ -8,7 +8,7 @@ int main(void)
 	char *user_input = NULL; /*variable to store user input */
 	int exit_status = 0, getline_result;
 	size_t buffer_size = 0; /* size of buffer for getline */
-	size_t input_length;
+	char *newline_position;
 
 	while (1)/* creates infinite loop - main execution loop of shell*/
 	{ /* check if connected to a terminal and print shell prompt*/
@@ -29,11 +29,10 @@ int main(void)
 			free(user_input);
 			return (EXIT_FAILURE);
 		}
-		/*remove newline character from user_input */
-		input_length = strlen(user_input);
-		if (input_length > 0 && user_input[input_length - 1] == '\n')
-			user_input[input_length - 1] = '\0';
-
+		/* trim newline character from user_input */
+		newline_position = strchr(user_input, '\n');
+		if(newline_position != NULL)
+			newline_position = '\0';
 		if (strcasecmp(user_input, "exit") == 0)
 			break; /*exit loop instead of freeing and returning */
 
