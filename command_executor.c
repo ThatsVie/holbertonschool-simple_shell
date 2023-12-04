@@ -24,10 +24,10 @@ int execute(char *user_input)
 	if ((last_newline = strrchr(command_args[0], '\n')) != NULL)
 		*last_newline = '\0';
 	/* check if command is absolute path of needs path resolution */
-	if (user_input[0] == '/')
+	if (command_args[0][0] == '/')
 	{
 		/* Use input as path if it starts with '/' */
-		command_path = strdup(user_input);
+		command_path = strdup(command_args[0]);
 	}
 	else
 		command_path = get_full_path(command_args[0]);
