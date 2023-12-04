@@ -38,7 +38,7 @@ int execute(char *user_input)
 		return (-1);
 	}
 	/*check if file exists and is executible before forking */
-	if (access(command_path, X_OK) == -1)
+	if (access(command_path, F_OK | X_OK) == -1)
 	{
 		perror("Execution Error");
 		free_tokens(command_args);
