@@ -32,7 +32,7 @@ int main(void)
 		/* trim newline character from user_input */
 		newline_position = strchr(user_input, '\n');
 		if(newline_position != NULL)
-			newline_position = '\0';
+			*newline_position = '\0';
 		if (strcasecmp(user_input, "exit") == 0)
 			break; /*exit loop instead of freeing and returning */
 
