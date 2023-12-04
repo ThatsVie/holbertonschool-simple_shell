@@ -40,7 +40,6 @@ int execute(char *user_input)
 	/*check if file exists and is executible before forking */
 	if (access(command_path, F_OK | X_OK) == -1)
 	{
-		perror("Execution Error");
 		free_tokens(command_args);
 	       	free(command_path);
 		return (-1);
