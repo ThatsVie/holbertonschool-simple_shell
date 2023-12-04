@@ -13,6 +13,9 @@ int execute(char *user_input)
 	int child_status, exit_status = 0;
 	char *last_newline;
 
+	/* Validate input */
+	if (user_input == NULL)
+		return (-1);
 	/* tokenize user's command */
 	command_args = tokenize(user_input);
 	if (command_args == NULL)
@@ -23,15 +26,8 @@ int execute(char *user_input)
 	/* check if command is absolute path of needs path resolution */
 	if (user_input[0] == '/')
 	{
-		/* check if absolute path exists */
-		if (access(user_input, X_OK) == 0)
+		/* Use input as path if it starts with '/' */
 		command_path = strdup(user_input);
-		else
-		{
-			fprintf(stderr, "Error: Absolute path does not exist or not executable.\n");
-			free_tokens(command_args);
-			return (-1);
-		}
 	}
 	else
 		command_path = get_full_path(command_args[0]);
