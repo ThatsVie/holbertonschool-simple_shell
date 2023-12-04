@@ -22,7 +22,10 @@ int execute(char *user_input)
 		return (-1); /* tokenization failed */
 	/*remove newline character from last token */
 	if ((last_newline = strrchr(command_args[0], '\n')) != NULL)
-		*last_newline = '\0';
+	{
+		if (last_newline == command_args[0] + strlen(command_args[0]) - 1)
+			*last_newline = '\0';
+	}
 	/* check if command is absolute path of needs path resolution */
 	if (command_args[0][0] == '/')
 	{
