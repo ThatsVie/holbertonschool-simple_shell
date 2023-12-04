@@ -41,11 +41,11 @@ char **tokenize_path(char *path_string)
  */
 char *get_full_path(char *command)
 {
-	char *path_env, *copied_path;
+	char *path_env;
 	char full_path[1024];
-	char *path_token;
 	struct stat file_info;
-
+	char **path_tokens;
+	int i;
 	/*if command already has a path use it directly */
 	if (strchr(command, '/') != NULL)
 	{
@@ -57,29 +57,24 @@ char *get_full_path(char *command)
 	path_env = getenv("PATH");
 	if (path_env == NULL)
 		return (NULL);
-	/* duplicate the environment variable for tokenization */
-	copied_path = strdup(path_env);
-	if (copied_path == NULL)
-	{
-		perror("Error in memory allocation");
-		exit(EXIT_FAILURE);
-	}
 
-	/* tokenize the PATH variable to search for the command */
-	path_token = strtok(copied_path, ":");
-
-	while (path_token != NULL)
+	/* tokenize PATH variable */
+	path_tokens = tokenize_path(path_env);
+	if (path_tokens == NULL)
+		return (NULL);
+	/* iterate through each directory in PATH */
+	for (i = 0; path_tokens[i] != NULL; i++)
 	{
 		/* construct full path */
-		snprintf(full_path, sizeof(full_path), "%s/%s", path_token, command);
+		snprintf(full_path, sizeof(full_path), "%s/%s", path_tokens[i], command);
+
 		/* check if path is valid */
 		if (stat(full_path, &file_info) == 0)
 		{
-			free(copied_path);
+			free(path_tokens);
 			return (strdup(full_path));
 		}
-			path_token = strtok(NULL, ":"); /* get next token */
-		}
-	free(copied_path);
-	return (NULL); /* command not found in directory*/
+	}
+	free(path_tokens);
+	return (NULL);
 }
