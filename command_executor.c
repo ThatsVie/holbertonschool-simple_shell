@@ -37,6 +37,14 @@ int execute(char *user_input)
 		free_tokens(command_args);
 		return (-1);
 	}
+	/*check if file exists and is executible before forking */
+	if (access(command_path, X_OK) == -1)
+	{
+		perror("Execution Error");
+		free_tokens(command_args);
+	       	free(command_path);
+		return (-1);
+	}
 	/* fork a child process for command execution */
 	child_pid = fork();
 	if (child_pid < 0)
