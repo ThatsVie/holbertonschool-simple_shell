@@ -22,8 +22,17 @@ int execute(char *user_input)
 		*last_newline = '\0';
 	/* check if command is absolute path of needs path resolution */
 	if (user_input[0] == '/')
-	/* use input as path if it starts with '/' */
+	{
+		/* check if absolute path exists */
+		if (access(user_input, X_OK) == 0)
 		command_path = strdup(user_input);
+		else
+		{
+			fprintf(stderr, "Error: Absolute path does not exist or not executable.\n");
+			free_tokens(command_args);
+			return (-1);
+		}
+	}
 	else
 		command_path = get_full_path(command_args[0]);
 	/* check if get_full_path failed */
