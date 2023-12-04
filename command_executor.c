@@ -13,6 +13,9 @@ int execute(char *user_input)
 	int child_status, exit_status = 0;
 	char *last_newline;
 
+	/* Validate input */
+	if (user_input == NULL)
+		return (-1);
 	/* tokenize user's command */
 	command_args = tokenize(user_input);
 	if (command_args == NULL)
@@ -21,15 +24,25 @@ int execute(char *user_input)
 	if ((last_newline = strrchr(command_args[0], '\n')) != NULL)
 		*last_newline = '\0';
 	/* check if command is absolute path of needs path resolution */
-	if (user_input[0] == '/')
-	/* use input as path if it starts with '/' */
-		command_path = strdup(user_input);
+	if (command_args[0][0] == '/')
+	{
+		/* Use input as path if it starts with '/' */
+		command_path = strdup(command_args[0]);
+	}
 	else
 		command_path = get_full_path(command_args[0]);
 	/* check if get_full_path failed */
 	if (command_path == NULL)
 	{
 		free_tokens(command_args);
+		return (-1);
+	}
+	/*check if file exists and is executible before forking */
+	if (access(command_path, X_OK) == -1)
+	{
+		perror("Execution Error");
+		free_tokens(command_args);
+	       	free(command_path);
 		return (-1);
 	}
 	/* fork a child process for command execution */
