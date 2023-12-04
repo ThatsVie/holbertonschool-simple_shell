@@ -46,6 +46,13 @@ char *get_full_path(char *command)
 	char *path_token;
 	struct stat file_info;
 
+	/*if command already has a path use it directly */
+	if (strchr(command, '/') != NULL)
+	{
+		if (stat(command, &file_info) == 0)
+		return (strdup(command));
+		return (NULL); /* if condition is false */
+	}
 	/* get the value of the PATH environment variable */
 	path_env = getenv("PATH");
 	if (path_env == NULL)
@@ -61,13 +68,10 @@ char *get_full_path(char *command)
 	/* tokenize the PATH variable to search for the command */
 	path_token = strtok(copied_path, ":");
 
-	while (path_token)
+	while (path_token != NULL)
 	{
 		/* construct full path */
-		if (path_token[strlen(path_token) - 1] == '/')
-			sprintf(full_path, "%s%s", path_token, command);
-		else
-			sprintf(full_path, "%s/%s", path_token, command);
+		snprintf(full_path, sizeof(full_path), "%s/%s", path_token, command);
 		/* check if path is valid */
 		if (stat(full_path, &file_info) == 0)
 		{
