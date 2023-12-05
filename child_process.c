@@ -33,7 +33,7 @@ int child_process(char *path, char *c_path, char **c_args)
 		} while (WIFEXITED(exit_stat) && !WIFSIGNALED(exit_stat));
 	}
 	/*Ignore the wait_stat variable to prevent compiler warnings*/
-	(void)wait_stat;
+	(void) wait_stat;
 	/*Return the exit status of the executed command */
 	return (exit_stat);
 }
