@@ -6,7 +6,7 @@
  * @env: environment variables
  * Return: exit status
  */
-int main( int argc, char **argv, char **env)
+int main(int argc, char **argv, char **env)
 {
 	char *input = NULL, *path = NULL;
 	size_t size = 0;
