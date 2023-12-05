@@ -1,49 +1,72 @@
 #include "main.h"
 /**
  * main - entry point
- * Return: When success 0, when error -1
+ * @argc: argument count
+ * @argv: argument vector
+ * @env: environment variables
+ * Return: exit status
  */
-int main(void)
+int main( int argc, char **argv, char **env)
 {
-	char *user_input = NULL; /*variable to store user input */
-	int exit_status = 0, getline_result;
-	size_t buffer_size = 0; /* size of buffer for getline */
+	char *input = NULL, *path = NULL;
+	size_t size = 0;
+	char *t_array[33], *p_array[33];
+	int exit_status = 0;
+	int i;
 
-	while (1)/* creates infinite loop - main execution loop of shell*/
-	{ /* check if connected to a terminal and print shell prompt*/
-		if (isatty(STDIN_FILENO))
-			printf("$ ");
-		/* read a line of input from user */
-		getline_result = getline(&user_input, &buffer_size, stdin);
-		/* check for errors or EOF */
-		if (getline_result == -1)
-		{
-			if (feof(stdin))
+	(void)argc;
+	(void)argv;
+
+	while (1)
+	{
+		i = 0;
+		while (env[i] != NULL)
+		{	/* 5 because number of characters in PATH= */
+			if (strncmp(env[i], "PATH=", 5) == 0)
 			{
-				printf("\n");
-				free(user_input);
-				exit(EXIT_SUCCESS);
+				path = duplicate_string((env[i] + 5));
+				break;
 			}
-			free(user_input);
-			return (EXIT_FAILURE);
+			i++;
 		}
-		/* trim newline character from user_input if it exists */
-		if (user_input[getline_result - 1] == '\n')
-			user_input[getline_result - 1] = '\0';
-		if (strcasecmp(user_input, "exit") == 0)
-			break; /*exit loop instead of freeing and returning */
+		tokenize_string(path, ":", p_array);
 
-		/* check for env command */
-		if (strcasecmp(user_input, "env") == 0)
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "$ ", 2);
+		if (getline(&input, &size, stdin) == -1)
 		{
-			print_environment(); /*print environment variable*/
+			free(input);
+			free(path);
+			exit(EXIT_SUCCESS):
+		}
+		tokenize_string(input, " \n\t", t_array);
+
+		if (!t_array[0])
+		{
+			free(path);
 			continue;
 		}
-		exit_status = execute(user_input);
-
-		if (exit_status == -1)
-			perror("Execution Error");
+		if (strcmp(t_array[0], "exit") == 0)
+		{
+			free(input);
+			free(path);
+			exit(EXIT_SUCCESS);
+		}
+		if (strcmp(t_array[0], "env") == 0)
+		{
+			for (i = 0; env[i] != NULL; i++)
+			{
+				write(STDOUT_FILENO, env[i], strlen(env[i]));
+				write(STDOUT_FILENO, "\n", 1);
+			}
+			free(path);
+			continue;
+		}
+		if (access(t_array[0], X_OK) == 0)
+			exit_status = child_process(path, t_array[0], t_array);
+		else
+			exit_status = check_path(path, p_array, t_array);
 	}
-	free(user_input); /*freeing outside of loop*/
 	return (exit_status);
 }
+
