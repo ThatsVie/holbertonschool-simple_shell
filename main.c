@@ -46,7 +46,7 @@ int main(int argc, char **argv, char **env)
 			exit(EXIT_SUCCESS);
 		}
 		/* tokenize the user input into array of tokens */
-		tokenize_string(input, " \n\t", t_array);
+		tokenize_string(input, " \n\t\r", t_array);
 
 		/*handle empty input */
 		if (!t_array[0])
@@ -75,7 +75,7 @@ int main(int argc, char **argv, char **env)
 		}
 		/* check if the command is executable */
 		if (access(t_array[0], X_OK) == 0)
-			exit_status = child_process(path, t_array[0], t_array);
+			child_process(path, t_array[0], t_array);
 		else
 			exit_status = check_path(path, p_array, t_array);
 	}
