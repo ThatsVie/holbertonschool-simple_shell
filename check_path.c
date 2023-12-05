@@ -12,21 +12,28 @@ int check_path(char *path, char **p_array, char **t_array)
 	char *c_path = NULL;
 	struct stat file_stat;
 
+	/* Iterate through each directory in the path array */
 	while (p_array[i] != NULL)
 	{
-		/* construct full path*/
+		/* Construct full path by concatenating directory and command*/
 		c_path = malloc(strlen(t_array[0]) + strlen(p_array[i]) + 2);
 		strcpy(c_path, p_array[i]);
 		strcat(c_path, "/");
 		strcat(c_path, t_array[0]);
+
+		/* Check if constructed path corresponds to an existing file*/
 		if (stat(c_path, &file_stat) == 0)
 		{
+			/*If file exists, execute the command */
 			child_process(path, c_path, t_array);
 			free(c_path);
 			return (0);
 		}
+		/* Free dynamically allocated memory for constructed path */
 		free(c_path);
+		/* Move to the next directory in the path array */
 		i++;
 	}
+	/*If command is not found in any directory, return exit status 1 */
 	return (1); /* command not found */
 }
