@@ -1,22 +1,18 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <signal.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#include <stdio.h> /*for standard input/output functions*/
+#include <stdlib.h> /*For memory allocation and EXIT_SUCCESS/EXIT_FAILURE*/
+#include <string.h> /*For string manipulation functions*/
+#include <unistd.h> /* For access(), fork(), execve(), getpid() */
+#include <sys/wait.h> /* For waitpid() */
+#include <sys/types.h> /* For pid_t */
+#include <sys/stat.h> /* For stat() */
+#include <fcntl.h> /* For file control options (access mode) */
 
-extern char **environ;
-int main(void);
-int execute(char *user_input);
-char **tokenize(char *input_line);
-char **tokenize_path(char *path_string);
-char *get_full_path(char *command);
-void print_environment(void);
-void free_tokens(char **token_array);
+void tokenize_string(char *string, char *delimiters, char **tokens);
+int check_path(char *path, char **p_array, char **t_array);
+int child_process(char *path, char *c_path, char **c_args);
+char *duplicate_string(char *string);
 
 #endif
