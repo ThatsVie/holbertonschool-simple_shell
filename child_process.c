@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * child_process - creates child process and executes a command
- * path: PATH environment variable
+ * @path: PATH environment variable
  * @c_path: full path of the command to execute
  * @c_args: arguments of the command
  * Return: Exit status of command
@@ -30,5 +30,5 @@ int child_process(char *path, char *c_path, char **c_args)
 		} while (WIFEXITED(exit_stat) && !WIFSIGNALED(exit_stat));
 	}
 	(void)wait_stat;
-	return(exit_stat);
+	return (exit_stat);
 }
