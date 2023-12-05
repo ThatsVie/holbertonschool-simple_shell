@@ -30,7 +30,7 @@ int child_process(char *path, char *c_path, char **c_args)
 		/*In parent process, wait fo child process to complete*/
 		do {
 			wait_stat = waitpid(child_pid, &exit_stat, WUNTRACED);
-		} while (WIFEXITED(exit_stat) && !WIFSIGNALED(exit_stat));
+		} while (!WIFEXITED(exit_stat) && !WIFSIGNALED(exit_stat));
 	}
 	/*Ignore the wait_stat variable to prevent compiler warnings*/
 	(void) wait_stat;
