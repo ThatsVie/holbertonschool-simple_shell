@@ -37,7 +37,7 @@ int main( int argc, char **argv, char **env)
 		{
 			free(input);
 			free(path);
-			exit(EXIT_SUCCESS):
+			exit(EXIT_SUCCESS);
 		}
 		tokenize_string(input, " \n\t", t_array);
 

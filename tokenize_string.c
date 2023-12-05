@@ -4,6 +4,7 @@
  * @string : string to tokenize
  * @delimiters: delimiters for tokenization
  * @tokens: array to store tokens
+ * Return: void
  */
 void tokenize_string(char *string, char *delimiters, char **tokens)
 {
@@ -12,7 +13,7 @@ void tokenize_string(char *string, char *delimiters, char **tokens)
 
 	while (token != NULL)
 	{
-		token[i] = token;
+		tokens[i] = token;
 		i++;
 		token = strtok(NULL, delimiters);
 	}
