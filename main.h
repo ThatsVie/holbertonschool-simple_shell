@@ -10,13 +10,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-extern char **environ;
-int main(void);
-int execute(char *user_input);
-char **tokenize(char *input_line);
-char **tokenize_path(char *path_string);
-char *get_full_path(char *command);
-void print_environment(void);
-void free_tokens(char **token_array);
+void tokenize_string(char *string, char *delimiters, char **tokens)
 
 #endif
