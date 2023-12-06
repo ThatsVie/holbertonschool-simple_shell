@@ -10,9 +10,8 @@ int main(int argc, char **argv, char **env)
 {
 	char *input = NULL, *path = NULL;
 	size_t size = 0;
-	char *t_array[33], *p_array[33];
-	int exit_status = 0;
-	int i;
+	char *t_array[20], *p_array[20];
+	int exit_status = 0, i;
 	
 	/* unsused parameters to avoid compiler warning */
 	(void)argc;
@@ -24,7 +23,7 @@ int main(int argc, char **argv, char **env)
 		i = 0;
 		/* find PATH environment variable*/
 		while (env[i] != NULL)
-		{	/* 5 because number of characters in PATH= */
+		{
 			if (strncmp(env[i], "PATH=", 5) == 0)
 			{	/* extract PATH value and duplicate it */
 				path = duplicate_string((env[i] + 5));
@@ -37,7 +36,7 @@ int main(int argc, char **argv, char **env)
 
 		/* print shell prompt if connected to terminal */
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "$ ", 2);
+			write(STDOUT_FILENO, "MARCEL $ ", 9);
 		/* read a line of input from user */
 		if (getline(&input, &size, stdin) == -1)
 		{
