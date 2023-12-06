@@ -1,5 +1,8 @@
-![MARCEL_Shell](https://github.com/ThatsVie/holbertonschool-simple_shell/assets/143755961/ff7f0638-6fe2-4684-89cb-e83043ebef15)
 <p align="center">
+  <img width="600"  src="https://i.pinimg.com/originals/79/8a/de/798adede7fcf591211470e92ff36632d.gif" alt="Marcel the Shell With Shoes On">
+</p>
+
+</p><p align="center">
 by <a href="https://github.com/ThatsVie/">Vie</a>
 </p>
 <br>
@@ -108,6 +111,9 @@ Execute the compiled binary hsh:
   <br>
   <br>
 Once in the shell, you can enter commands as you would in a typical shell environment.
-  
-![download](https://github.com/ThatsVie/holbertonschool-simple_shell/assets/143755961/323dd7cc-f155-4f4d-a9cc-590aacf34730)
+<br>
+<br>
+<p align="center">
+  <img width="300"  src="https://images.seattletimes.com/wp-content/uploads/2022/06/urn-publicid-ap-org-2fdbe2c9164d1b79a6f9c603ad26ee2fFilm_Review_-_Marcel_the_Shell_with_Shoes_On_02252.jpg?d=1560x995"  alt="Marcel the Shell With Shoes On">
+</p>
 
