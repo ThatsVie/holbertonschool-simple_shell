@@ -97,7 +97,7 @@ char *duplicate_string(char *string): Duplicates a string and returns a copy. </
 <br>
 Building the Shell
 <br>
-Compile the shell using a C compiler. For example, using gcc:
+Compile the shell using a C compiler
   <br>
   <br>
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
