@@ -34,6 +34,6 @@ int check_path(char *path, char **p_array, char **t_array)
 		/* Move to the next directory in the path array */
 		i++;
 	}
-	/*If command is not found in any directory, return exit status 1 */
-	return (1); /* command not found */
+	/*If command is not found in any directory, return exit status 127 */
+	return (127); /* command not found */
 }
