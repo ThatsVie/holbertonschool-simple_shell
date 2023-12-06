@@ -17,7 +17,10 @@ int check_path(char *path, char **p_array, char **t_array)
 	{
 		/* Construct full path by concatenating directory and command*/
 		c_path = malloc(strlen(t_array[0]) + strlen(p_array[i]) + 2);
-		strcpy(c_path, p_array[i]);
+		if (c_path == NULL)
+			exit(EXIT_FAILURE);
+
+		strcpy(c_path, p_array[i]); strlen(p_array[i] + 1);
 		strcat(c_path, "/");
 		strcat(c_path, t_array[0]);
 
