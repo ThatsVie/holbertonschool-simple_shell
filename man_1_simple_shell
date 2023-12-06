@@ -1,0 +1,51 @@
+.TH MARCEL-SHELL 1 "December 2023" "1.0" "MARCEL-Shell Manual"
+
+.SH NAME
+MARCEL-Shell - A simple shell program
+
+.SH SYNOPSIS
+.B MARCEL-Shell
+
+.SH DESCRIPTION
+MARCEL-Shell is a simple shell program that allows users to execute commands, manage environment variables, and perform basic shell operations.
+
+.SH OPTIONS
+ MARCEL-Shell does not currently support any command-line options.
+
+.SH COMMANDS
+MARCEL-Shell supports the following built-in commands:
+
+.B exit
+Exit the shell.
+
+.B env
+Display the environment variables.
+
+.SH USAGE
+To run MARCEL-Shell, simply execute the program without any command-line options
+.B
+$ ./hsh
+   
+Once in the shell, you can enter commands as you would in a typical shell environment.
+
+.SH EXAMPLES
+Run a command:
+.B
+MARCEL $ ls
+
+Display environment variables:
+.B
+MARCEL $ env
+
+Exit the shell:
+.B
+MARCEL $ exit
+
+.SH AUTHOR
+Written by Vie Paula.
+
+.SH BUGS
+Report any bugs to [7228@holberstonstudents.com].
+
+.SH SEE ALSO
+The MARCEL-Shell source and documentation are available at https://github.com/ThatsVie/holbertonschool-simple_shell
