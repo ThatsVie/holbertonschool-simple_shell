@@ -10,6 +10,7 @@
 #include <sys/stat.h> /* For stat() */
 #include <fcntl.h> /* For file control options (access mode) */
 
+char *find_and_duplicate_path(char **env);
 void tokenize_string(char *string, char *delimiters, char **tokens);
 int check_path(char *path, char **p_array, char **t_array);
 int child_process(char *path, char *c_path, char **c_args);

@@ -18,16 +18,7 @@ int main(int argc, char **argv, char **env)
 
 	while (1)
 	{
-		i = 0;
-		while (env[i] != NULL)
-		{
-			if (strncmp(env[i], "PATH=", 5) == 0)
-			{
-				path = duplicate_string((env[i] + 5));
-				break;
-			}
-			i++;
-		}
+		path = find_and_duplicate_path(env);
 		tokenize_string(path, ":", p_array);
 
 		if (isatty(STDIN_FILENO))
