@@ -18,9 +18,17 @@ int main(int argc, char **argv, char **env)
 
 	while (1)
 	{
-		path = find_and_duplicate_path(env);
+		i = 0;
+		while (env[i] != NULL)
+		{
+			if (strncmp(env[i], "PATH=", 5) == 0)
+			{
+				path = duplicate_string((env[i] + 5));
+				break;
+			}
+			i++;
+		}
 		tokenize_string(path, ":", p_array);
-
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "MARCEL $ ", 9);
 
