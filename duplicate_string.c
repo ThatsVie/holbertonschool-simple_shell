@@ -29,4 +29,4 @@ char *duplicate_string(char *string)
 		duplicate[i] = string[i];
 
 	return (duplicate);
-}		
+}
