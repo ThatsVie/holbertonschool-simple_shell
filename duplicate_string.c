@@ -10,10 +10,10 @@ char *duplicate_string(char *string)
 	int i = 0;
 	int length = 0;
 	char *duplicate;
-	
+
 	if (string == NULL)
 		return (NULL);
-	
+
 	while (string[i] != '\0')
 	{
 		i++;
@@ -29,5 +29,4 @@ char *duplicate_string(char *string)
 		duplicate[i] = string[i];
 
 	return (duplicate);
-}
-		
+}		
