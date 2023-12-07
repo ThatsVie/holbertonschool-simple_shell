@@ -3,7 +3,7 @@
  * find_and_duplicate_path - Finds the PATH environment variable
  * and duplicates its value.
  * @env: array of environment variables
- * return: duplicated path value
+ * Return: duplicated path value
  */
 char *find_and_duplicate_path(char **env)
 {
